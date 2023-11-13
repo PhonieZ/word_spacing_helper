@@ -16,7 +16,7 @@ possible_words=[]
 compiled_word_list=[]
 
 error_message=""
-#TBD, Just Reafctor This Whole File Next Time You Touch This Project
+#TBD, Just Refactor This Whole File Next Time You Touch This Project
 
 
 target_string=get_target_string(root_directory=os.path.dirname(__file__))
