@@ -62,8 +62,8 @@ def standardise_case(string):
     else:
         print(wrap_object("DEFAULT_CASE Value Invalid",WRAPPER=ERROR_COLOUR_WRAPPER))    #Just A Warning, No Point In Crashing Just Because Of This
 
-    return(string)      
-
+    return(string)    
+  
 
 
 
@@ -80,17 +80,25 @@ def get_target_string(root_directory):
 
 
 
-    INPUT_FILE_DIRECTORY=os.path.join(root_directory,WORKING_FOLDER,INPUT_FILE)
+    input_file_directory=os.path.join(root_directory,WORKING_FOLDER)
+
+    if not(os.path.exists(input_file_directory)):    #Creates Working Folder If It Doesn't Exist
+        os.makedirs(input_file_directory)
+
+    input_file_directory=os.path.join(input_file_directory,INPUT_FILE)
 
     try:
-        input_file_pointer=open(INPUT_FILE_DIRECTORY,"r",encoding="utf-8")
+        input_file_pointer=open(input_file_directory,"r",encoding="utf-8")
         target_string=input_file_pointer.read()
         input_file_pointer.close()
         
     except FileNotFoundError:
-        input_file_pointer=open(INPUT_FILE_DIRECTORY,"x",encoding="utf-8")
+        input_file_pointer=open(input_file_directory,"x",encoding="utf-8")
         target_string=""
-        input_file_pointer.close()   
+        input_file_pointer.close()
+        
+    if target_string == "":    
+        fatal_error(error_message="input.txt Is Blank")   
 
     
 
@@ -202,17 +210,14 @@ def clear_console():
 
 
 
-def fatal_error(error_message=None,compiled_words=None,root_directory=None):
+def fatal_error(error_message=None,compiled_words=None,root_directory=""):
     clear_console()
 
     if not(error_message is None):
         input(wrap_object(error_message,ERROR_COLOUR_WRAPPER))
 
 
-    if not(compiled_words is None) and (root_directory is None):
-        output_string(compiled_words,root_directory="")
-
-    else:
+    if not(compiled_words is None):
         output_string(compiled_words,root_directory)
 
 
