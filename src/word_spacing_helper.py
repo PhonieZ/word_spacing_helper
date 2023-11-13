@@ -123,7 +123,8 @@ while True:
     key_pressed_descriptor=identify_word.get_descriptor_from_bind(key_pressed,BIND_LIST)
 
     if (is_key_pressed_in_bind_list) and (key_pressed_descriptor == "Exit"):
-        fatal_error(compiled_words=list_to_str(compiled_word_list,delimiter=" "))
+        output_string(root_directory=os.path.dirname(__file__),output_string=list_to_str(compiled_word_list,delimiter=" "))
+        fatal_error()
 
 
 

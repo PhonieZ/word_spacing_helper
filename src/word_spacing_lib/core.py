@@ -210,15 +210,11 @@ def clear_console():
 
 
 
-def fatal_error(error_message=None,compiled_words=None,root_directory=""):
+def fatal_error(error_message=None):
     clear_console()
 
     if not(error_message is None):
         input(wrap_object(error_message,ERROR_COLOUR_WRAPPER))
-
-
-    if not(compiled_words is None):
-        output_string(compiled_words,root_directory)
 
 
     sys.exit()
